@@ -6,17 +6,17 @@ import 'package:flutter/material.dart';
 
 class MyPipe extends StatelessWidget {
   Rect getTopPipeRect(BuildContext context, double leftPos, double currentTop) {
-    double topPipeHeight = MediaQuery.of(context).size.height * 0.3;
-    double pipeWidth = MediaQuery.of(context).size.width * 0.15;
+    double topPipeHeight = 320;
+    double pipeWidth = 60;
     return Rect.fromLTWH(leftPos, 0, pipeWidth, topPipeHeight + currentTop);
   }
 
   Rect getBottomPipeRect(
-      BuildContext context, double leftPos, double currentTop) {
-    double topPipeHeight = MediaQuery.of(context).size.height * 0.4;
-    double pipeWidth = MediaQuery.of(context).size.width * 0.15;
+    BuildContext context, double leftPos, double currentTop) {
+    double topPipeHeight = 320;
+    double pipeWidth = 60;
     double screenHeight = MediaQuery.of(context).size.height;
-    double bottomPipeTop = topPipeHeight + currentTop + 170;
+    double bottomPipeTop = topPipeHeight + currentTop + 190;
     return Rect.fromLTWH(
         leftPos, bottomPipeTop, pipeWidth, screenHeight - bottomPipeTop);
   }
@@ -36,27 +36,31 @@ class MyPipe extends StatelessWidget {
     return Stack(
       children: [
         Positioned(
-          left: leftPos, // Set the left position here
-          top: top, // Set the top position here
+          left: leftPos,
+          top: top, 
           child: Column(
             children: [
               // Upper pipe
-              Transform.rotate(
-                angle: pi,
+              Container(
+                child: Transform.rotate(
+                  angle: pi,
+                  child: Image.asset(
+                    "images/sprites/pipe-green.png",
+                    height: pipeHeight,
+                    fit: BoxFit.fill,
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 190,
+              ),
+              // Lower pipe
+              Container(
                 child: Image.asset(
                   "images/sprites/pipe-green.png",
                   height: pipeHeight,
                   fit: BoxFit.fill,
                 ),
-              ),
-              const SizedBox(
-                height: 170,
-              ),
-              // Lower pipe
-              Image.asset(
-                "images/sprites/pipe-green.png",
-                height: pipeHeight,
-                fit: BoxFit.fill,
               ),
             ],
           ),
@@ -65,3 +69,5 @@ class MyPipe extends StatelessWidget {
     );
   }
 }
+
+ 

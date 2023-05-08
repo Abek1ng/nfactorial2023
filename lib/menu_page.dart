@@ -1,8 +1,9 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flappy_bird/bird.dart';
 import 'package:flutter/material.dart';
+import 'helper.dart';
 import 'home_page.dart';
+import 'sounds.dart';
 
 class MenuPage extends StatefulWidget {
   final int currentScore;
@@ -22,7 +23,7 @@ class _MenuPageState extends State<MenuPage> {
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         child: Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage("images/sprites/background-day.png"),
               fit: BoxFit.cover,
@@ -37,8 +38,10 @@ class _MenuPageState extends State<MenuPage> {
               ),
               GestureDetector(
                 onTap: () {
-                  birdColor = "yellow";
-                  setBirdPath('images/sprites/yellowbird-midflap.png');
+                  setState(() {
+                    birdColor = "yellow";
+                    setBirdPath('images/sprites/yellowbird-midflap.png');
+                  });
                 },
                 child: Image.asset(
                   'images/sprites/yellowbird-midflap.png',
@@ -50,8 +53,10 @@ class _MenuPageState extends State<MenuPage> {
               ),
               GestureDetector(
                 onTap: () {
-                  birdColor = "blue";
-                  setBirdPath('images/sprites/bluebird-midflap.png');
+                  setState(() {
+                    birdColor = "blue";
+                    setBirdPath('images/sprites/bluebird-midflap.png');
+                  });
                 },
                 child: Image.asset(
                   'images/sprites/bluebird-midflap.png',
@@ -63,8 +68,10 @@ class _MenuPageState extends State<MenuPage> {
               ),
               GestureDetector(
                 onTap: () {
-                  birdColor = "red";
-                  setBirdPath('images/sprites/redbird-midflap.png');
+                  setState(() {
+                    birdColor = "red";
+                    setBirdPath('images/sprites/redbird-midflap.png');
+                  });
                 },
                 child: Image.asset(
                   'images/sprites/redbird-midflap.png',
@@ -75,7 +82,7 @@ class _MenuPageState extends State<MenuPage> {
                 height: MediaQuery.of(context).size.height * 0.1,
               ),
               Image.asset(
-                birdPath,
+                'images/sprites/${birdColor}bird-midflap.png',
                 scale: 0.75,
               ),
               SizedBox(
@@ -83,7 +90,7 @@ class _MenuPageState extends State<MenuPage> {
               ),
               Text(
                 'Current Score: ${widget.currentScore}',
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
@@ -98,7 +105,7 @@ class _MenuPageState extends State<MenuPage> {
               ),
               Text(
                 'Max Score: ${widget.maxScore}',
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
@@ -117,18 +124,19 @@ class _MenuPageState extends State<MenuPage> {
               ElevatedButton(
                 onPressed: () {
                   setState(() {
-                    
+                    resetGame();
+                    playSwoosh();
                   });
                   Navigator.pushReplacement(
                     context,
-                    MaterialPageRoute(builder: (context) => HomePage()),
+                    MaterialPageRoute(builder: (context) => const HomePage()),
                   );
                 },
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all<Color>(
-                      Color.fromARGB(255, 236, 185, 103)),
+                      const Color.fromARGB(255, 236, 185, 103)),
                   padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
-                    EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                    const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
                   ),
                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                     RoundedRectangleBorder(
@@ -136,7 +144,7 @@ class _MenuPageState extends State<MenuPage> {
                     ),
                   ),
                 ),
-                child: Text(
+                child: const Text(
                   "Restart",
                   style: TextStyle(
                     fontSize: 20,
@@ -145,10 +153,9 @@ class _MenuPageState extends State<MenuPage> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 16,
               ),
-              
             ],
           ),
         ),
