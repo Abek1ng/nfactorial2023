@@ -6,14 +6,14 @@ import 'package:flutter/material.dart';
 
 class MyPipe extends StatelessWidget {
   Rect getTopPipeRect(BuildContext context, double leftPos, double currentTop) {
-    double topPipeHeight = 320;
+    double topPipeHeight = 330;
     double pipeWidth = 60;
     return Rect.fromLTWH(leftPos, 0, pipeWidth, topPipeHeight + currentTop);
   }
 
   Rect getBottomPipeRect(
     BuildContext context, double leftPos, double currentTop) {
-    double topPipeHeight = 320;
+    double topPipeHeight = 330;
     double pipeWidth = 60;
     double screenHeight = MediaQuery.of(context).size.height;
     double bottomPipeTop = topPipeHeight + currentTop + 190;
